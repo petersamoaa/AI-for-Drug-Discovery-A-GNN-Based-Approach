@@ -1,35 +1,32 @@
-# 🧬 AI for Drug Discovery: A GNN Handbook
+# 🧬 AI for Drug Discovery: A GNN-Based Handbook
 
-Welcome! This repository provides a curated learning path for applying **Graph Neural Networks (GNNs)** to drug discovery and molecular science. 
+This repository serves as a technical guide and portfolio for applying **Graph Neural Networks (GNNs)** to molecular science and drug discovery. 
 
-This project bridges the gap between theoretical chemistry and deep learning by implementing concepts from *Graph Neural Networks in Action* (Manning) and *Hands-On GNNs* (Packt).
+Rather than treating molecules as simple strings or fixed vectors, we leverage their natural structure as mathematical graphs. This handbook follows a learning path inspired by the methodologies in *Graph Neural Networks in Action* (Manning) and *Hands-On GNNs* (Packt).
 
 ---
 
 ## 🗺️ Learning Path
 
-Explore the modules below to understand how AI is revolutionising the discovery of new medicines.
+### [Module 1: Molecular Fundamentals & Representations](./chapters/01_molecular_fundamentals.md)
 
-### [Module 1: Molecular Fundamentals](./chapters/01_fundamentals.md)
-*Learn why molecules are graphs and how to represent them in Python using RDKit.*
+An exploration of how molecules are discretised into graph objects, the limitations of traditional fingerprints, and the metrics used to evaluate druglikeness.
 
 ### [Module 2: Protein-Protein Interaction (PPI)](./chapters/02_ppi.md)
-*Understanding large-scale biological interactions using the GraphSAGE architecture.*
 
-### [Module 3: Generative Discovery](./chapters/03_generative.md)
-*Using Generative Adversarial Networks (MolGAN) to "dream up" new drug candidates.*
+Applying the GraphSAGE architecture to large-scale biological networks to predict how proteins interact.
 
----
+### [Module 3: Generative Molecular Design](./chapters/03_generative_discovery.md)
 
-## 🛠️ Tech Stack
-* **Language:** Python
-* **Cheminformatics:** RDKit, DeepChem
-* **Deep Learning:** PyTorch Geometric (PyG)
-* **Datasets:** ZINC, Tox21, PPI
+Using Variational Graph Autoencoders (VGAEs) to optimise latent spaces for de novo drug discovery.
 
 ---
 
-## 🚀 Getting Started
-To run the code examples, clone this repo and install the requirements:
+## 🛠️ Requirements
+To run the implementations in this handbook, you will need:
+- `rdkit`: The industry standard for cheminformatics.
+- `torch-geometric`: For building GNN layers.
+- `pandas/numpy`: For data manipulation.
+
 ```bash
-pip install torch-geometric rdkit deepchem
+pip install torch-geometric rdkit pandas numpy
