@@ -1,15 +1,13 @@
 # Module 1: Molecular Fundamentals & Graph Representations
 
-*Source Material: Section 1.3.2 (p. 18) and Section 5.4.1 (p. 178)*
-
 ## 1. Introduction: The Graph Nature of Molecules
 In chemistry and molecular sciences, a prominent problem has been representing molecules in a general, application-agnostic way. As noted in **Section 1.3.2**, the drawings of molecules common in high school chemistry are essentially graph structures:
 - **Nodes ($V$):** Represent individual Atoms (Carbon, Nitrogen, Oxygen, etc.).
 - **Edges ($E$):** Represent Atomic Bonds.
 
-### Figure 1.11: Molecular Graph Visualization
-*As seen on page 19, this figure demonstrates how a chemical structure is mapped directly onto a graph topology.*
+![Molecular Graph Representation](../images/molecular_graph_mapping.png)
 
+*Figure 1.1: Visualizing how a caffeine molecule translates into a mathematical graph object.*
 ## 2. GNNs vs. Traditional "Fingerprints"
 Traditionally, molecular properties were determined using "fingerprint" methods. These required domain experts to create manual features based on the presence or absence of specific sub-structures. 
 
