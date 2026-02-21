@@ -1,31 +1,64 @@
-# Module 1: Molecular Fundamentals
+# Module 1: Molecular Fundamentals & Graph Representations
 
-Before we can train a model to find a cure for a disease, we have to teach it how to "see" a molecule.
+*Source Material: Section 1.3.2 (p. 18) and Section 5.4.1 (p. 178)*
 
-## 1. The Problem with SMILES
-In traditional chemistry, we use **SMILES** strings (Simplified Molecular Input Line Entry System). 
-Example of Caffeine: `CN1C=NC2=C1C(=O)N(C(=O)N2C)C`
+## 1. Introduction: The Graph Nature of Molecules
+In chemistry and molecular sciences, a prominent problem has been representing molecules in a general, application-agnostic way. As noted in **Section 1.3.2**, the drawings of molecules common in high school chemistry are essentially graph structures:
+- **Nodes ($V$):** Represent individual Atoms (Carbon, Nitrogen, Oxygen, etc.).
+- **Edges ($E$):** Represent Atomic Bonds.
 
-**The Issue:** A string is a sequence. If you change one letter, the whole meaning changes. However, molecules are **graphs**. They are spatial and connected.
+### Figure 1.11: Molecular Graph Visualization
+*As seen on page 19, this figure demonstrates how a chemical structure is mapped directly onto a graph topology.*
 
-## 2. Molecules as Graphs
-A GNN treats a molecule as a mathematical graph $G = (V, E)$:
-* **Nodes (V):** The Atoms (Carbon, Nitrogen, Oxygen).
-* **Edges (E):** The Chemical Bonds (Single, Double, Triple).
+## 2. GNNs vs. Traditional "Fingerprints"
+Traditionally, molecular properties were determined using "fingerprint" methods. These required domain experts to create manual features based on the presence or absence of specific sub-structures. 
 
+**Why GNNs are better:**
+GNNs learn **data-driven features**. They can group molecules in unexpected ways and propose new synthesis routes. This is critical for predicting:
+- **Toxicity:** Is the chemical safe for human use?
+- **Efficacy:** Does it have the intended biological effect on disease progression?
 
+## 3. Molecular Data Formats: SMILES & ZINC
+To process molecules in Python, we use the **SMILES** (Simplified Molecular Input Line Entry System) format. As described in **Section 5.4.1 (Page 178)**, SMILES represents molecular graphs in ASCII format.
 
-## 3. Why GNNs?
-Standard Neural Networks are not **Permutation Invariant**. If you swap the order of the atoms in a list, a standard network gets confused. A GNN doesn't care about the order; it only cares about the **connections**.
+**The ZINC Dataset:**
+Our training usually involves the ZINC dataset (~250,000 molecules), which includes:
+1. **logP:** The water-octanol partition coefficient (measures solubility).
+2. **SAS:** Synthetic Accessibility Score (how hard is it to make?).
+3. **QED:** Quantitative Estimate of Druglikeness (the "gold standard" for how much a molecule looks like a potential drug).
 
-## 4. Key Metrics: QED & LogP
-When evaluating a molecule, we look at:
-* **QED (Quantitative Estimate of Druglikeness):** How much does this "look" like a real drug?
-* **LogP (Solubility):** Can this drug actually dissolve in the human body?
+## 4. The GNN Workflow for Drug Discovery
+As illustrated in **Figure 1.12 (Page 19)**, the workflow consists of an **Encoder** that transforms the molecular graph into a **Latent Representation** (a vector of numbers). This representation is then used to predict properties or "dream" of new molecules via a **Decoder**.
 
 ---
 
-## 💻 Hands-on: Turning SMILES into Graphs
-In the accompanying notebook, we use **RDKit** to perform this conversion.
+## 💻 Implementation: Converting SMILES to Graphs
+The following implementation uses **RDKit** and **PyTorch Geometric** to convert a SMILES string into a GNN-ready Data object.
 
-### [Go to Jupyter Notebook Implementation](../notebooks/01_molecular_viz.ipynb)
+### Listing 5.17: SMILES to Graph Function (Page 179)
+```python
+from torch_geometric.data import Data
+import torch
+from rdkit import Chem
+
+def smiles_to_graph(smiles, qed):
+    # Load molecule from SMILES string
+    mol = Chem.MolFromSmiles(smiles)
+    if not mol: return None
+    
+    # Extract Edges and Bond Features
+    edges = []
+    edge_features = []
+    for bond in mol.GetBonds():
+        edges.append([bond.GetBeginAtomIdx(), bond.GetEndAtomIdx()])
+        # Encoding bond types (Single, Double, etc.)
+        bond_type = bond.GetBondTypeAsDouble()
+        bond_feature = [1 if i == bond_type else 0 for i in range(4)]
+        edge_features.append(bond_feature)
+        
+    # Convert to Tensors
+    edge_index = torch.tensor(edges, dtype=torch.long).t().contiguous()
+    x = torch.tensor([atom.GetAtomicNum() for atom in mol.GetAtoms()], 
+                     dtype=torch.float).view(-1, 1)
+    
+    return Data(x=x, edge_index=edge_index, qed=torch.tensor([qed]))
