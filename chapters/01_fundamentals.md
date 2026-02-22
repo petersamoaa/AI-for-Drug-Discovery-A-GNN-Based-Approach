@@ -61,7 +61,7 @@ zinc_properties/250k_rndm_zinc_drugs_clean_3.csv"
 filename = "250k_rndm_zinc_drugs_clean_3.csv"
 download_file(url, filename)
 df = pd.read_csv(filename)
-df["smiles"] = df["smiles"].apply(lambda s: s.replace("\n", ""))
+df["smiles"] = df["smiles"].apply(lambda s: s.replace("\n", ""))```
 
 We download our dataset in
 listing 5.16, which generates the following output:
