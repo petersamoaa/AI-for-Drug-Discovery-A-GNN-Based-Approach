@@ -35,12 +35,37 @@ Our training usually involves the ZINC dataset (~250,000 molecules), which inclu
 3. **QED:** Quantitative Estimate of Druglikeness (the "gold standard" for how much a molecule looks like a potential drug).
 
 ## 4. The GNN Workflow for Drug Discovery
-As illustrated in **Figure 1.12 (Page 19)**, the workflow consists of an **Encoder** that transforms the molecular graph into a **Latent Representation** (a vector of numbers). This representation is then used to predict properties or "dream" of new molecules via a **Decoder**.
+As illustrated in **Figure 1.2**, the workflow consists of an **Encoder** that transforms the molecular graph into a **Latent Representation** (a vector of numbers). This representation is then used to predict properties or "dream" of new molecules via a **Decoder**.
 
 ---
 
 ## 💻 Implementation: Converting SMILES to Graphs
 The following implementation uses **RDKit** and **PyTorch Geometric** to convert a SMILES string into a GNN-ready Data object.
+
+To make the ZINK dataset usable by GNN models, we need to convert it into a suitable graph structure. Here, we’re going to use PyG to define our model and run deep learning routines. Therefore, we first download the data and then convert the dataset into graph objects using NetworkX.
+
+### Create a molecular graph dataset
+```python
+import requests
+import pandas as pd
+
+def download_file(url, filename):
+    response = requests.get(url)
+    response.raise_for_status()
+    with open(filename, 'wb') as f:
+    f.write(response.content)
+    
+url = "https://raw.githubusercontent.com/
+aspuru-guzikgroup/chemical_vae/master/models/
+zinc_properties/250k_rndm_zinc_drugs_clean_3.csv"
+filename = "250k_rndm_zinc_drugs_clean_3.csv"
+download_file(url, filename)
+df = pd.read_csv(filename)
+df["smiles"] = df["smiles"].apply(lambda s: s.replace("\n", ""))
+
+We download our dataset in
+listing 5.16, which generates the following output:
+
 
 ### Listing 5.17: SMILES to Graph Function (Page 179)
 ```python
