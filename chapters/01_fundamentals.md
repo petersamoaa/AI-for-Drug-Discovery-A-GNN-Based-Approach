@@ -18,6 +18,9 @@ GNNs learn **data-driven features**. They can group molecules in unexpected ways
 
 Drug discovery, especially for GNNs, can be understood as a **graph prediction problem**. Graph prediction tasks require learning and predicting properties of the entire graph. In drug discovery, the aim is to predict properties such as toxicity or treatment effectiveness (discriminative) or to suggest entirely new compounds to be synthesised and tested (generative). To suggest these new graphs, drug discovery methods often combine GNNs with other generative models such as variational graph autoencoders (VGAEs). 
 
+![Molecular Graph Representation](../images/Molecular_graph_Pipeline.png)
+*Figure 1.2: A GNN system used to predict new molecules. The workflow here starts on the left with a graph representation of a molecule. In the middle parts of the figure, this graph representation is transformed via a GNN into a latent representation. The latent representation is then transformed back to the molecule to ensure that the latent space can be decoded (right).*
+
 Moreover, the representation of molecules captures the inherent sparsity of molecular structures, where most atoms form only a few bonds, and large portions of the molecule may be distant from each other in the graph. Traditional machine learning methods often struggle to predict properties of new molecules due to this sparsity, as they don’t account for the full structural context. GNNs overcome these challenges by capturing both local atomic environments and global molecular structures. GNNs learn hierarchical features from fine-grained atomic interactions to broader molecular properties,
 and their ability to remain invariant to the ordering of atoms ensures consistent predictions. By leveraging molecular graph structure, GNNs make accurate predictions from sparse, connected data, thereby accelerating the drug discovery process.
 
