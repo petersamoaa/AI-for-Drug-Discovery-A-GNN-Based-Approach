@@ -22,7 +22,7 @@ Moreover, the representation of molecules captures the inherent sparsity of mole
 and their ability to remain invariant to the ordering of atoms ensures consistent predictions. By leveraging molecular graph structure, GNNs make accurate predictions from sparse, connected data, thereby accelerating the drug discovery process.
 
 ## 3. Molecular Data Formats: SMILES & ZINC
-To process molecules in Python, we use the **SMILES** (Simplified Molecular Input Line Entry System) format. As described in **Section 5.4.1 (Page 178)**, SMILES represents molecular graphs in ASCII format.
+To process molecules in Python, we use the **SMILES** (Simplified Molecular Input Line Entry System) format. SMILES represents molecular graphs in ASCII format.
 
 **The ZINC Dataset:**
 Our training usually involves the ZINC dataset (~250,000 molecules), which includes:
