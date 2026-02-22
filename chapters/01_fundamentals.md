@@ -1,7 +1,7 @@
 # Module 1: Molecular Fundamentals & Graph Representations
 
 ## 1. Introduction: The Graph Nature of Molecules
-In chemistry and molecular sciences, a prominent problem has been representing molecules in a general, application-agnostic way. As noted in **Section 1.3.2**, the drawings of molecules common in high school chemistry are essentially graph structures:
+In chemistry and molecular sciences, a prominent problem has been representing molecules in a general, application-agnostic way and inferring possible interfaces between molecules, such as proteins. The molecules representation is essentially graph structures:
 - **Nodes ($V$):** Represent individual Atoms (Carbon, Nitrogen, Oxygen, etc.).
 - **Edges ($E$):** Represent Atomic Bonds.
 
