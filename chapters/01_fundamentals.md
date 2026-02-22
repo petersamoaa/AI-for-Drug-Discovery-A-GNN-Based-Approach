@@ -69,16 +69,9 @@ We downloaded the ZINK dataset via cdode above, which generates the following ou
 |------|------|------|------:|
 | CC(C)(C)c1ccc2occ(CC(=O)Nc3ccccc3F)c2c1 | 5.05060 | 0.702012 | 2.084095 |
 | C[C@@H]1CC(Nc2cncc(-c3nncn3C)c2)C[C@@H](C)C1   | 3.11370 | 0.928975 | 3.432004 |
-
-
-
-2 N#Cc1ccc(-c2ccc(O[C@@H](C(=O)N3CCCC3)c3ccccc3)...
-4.96778 0.599682 2.470633
-3 CCOC(=O)[C@@H]1CCCN(C(=O)c2nc
-(-c3ccc(C)cc3)n3c...
-4.00022 0.690944 2.822753
-4 N#CC1=C(SCC(=O)Nc2cccc(Cl)c2)N=C([O-])
-[C@H](C#... 3.60956 0.789027 4.035182
+| N#Cc1ccc(-c2ccc(O[C@@H](C(=O)N3CCCC3)c3ccccc3)... | 4.96778 | 0.599682 | 2.470633 |
+| CCOC(=O)[C@@H]1CCCN(C(=O)c2nc(-c3ccc(C)cc3)n3c...|  4.00022  |  0.690944  |  2.822753  |
+|N#CC1=C(SCC(=O)Nc2cccc(Cl)c2)N=C([O-])[C@H](C#...| 3.60956 | 0.789027 | 4.035182 |
 
 ### Listing 5.17: SMILES to Graph Function (Page 179)
 ```python
