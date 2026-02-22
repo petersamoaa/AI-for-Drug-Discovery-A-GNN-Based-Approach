@@ -65,11 +65,13 @@ df["smiles"] = df["smiles"].apply(lambda s: s.replace("\n", ""))
 ```
 
 We downloaded the ZINK dataset via cdode above, which generates the following output:
-smiles logP qed SAS
-0 CC(C)(C)c1ccc2occ(CC(=O)Nc3ccccc3F)c2c1
-5.05060 0.702012 2.084095
-1 C[C@@H]1CC(Nc2cncc(-c3nncn3C)c2)C[C@@H](C)C1
-3.11370 0.928975 3.432004
+| smiles | logP | ged | SAS |
+|------|------|------|------:|
+| CC(C)(C)c1ccc2occ(CC(=O)Nc3ccccc3F)c2c1 | 5.05060 | 0.702012 | 2.084095 |
+| C[C@@H]1CC(Nc2cncc(-c3nncn3C)c2)C[C@@H](C)C1   | 3.11370 | 0.928975 | 3.432004 |
+
+
+
 2 N#Cc1ccc(-c2ccc(O[C@@H](C(=O)N3CCCC3)c3ccccc3)...
 4.96778 0.599682 2.470633
 3 CCOC(=O)[C@@H]1CCCN(C(=O)c2nc
