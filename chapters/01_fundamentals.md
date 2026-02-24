@@ -105,6 +105,6 @@ def smiles_to_graph(smiles, qed):
 ```
 A random sample from our dataset is shown in Figure 1.3, which highlights the variety of our molecular graphs and their small size: each graph has fewer than 100 nodes and edges. 
 
-![Molecular Graph Representation](../images/molecular graphs with QED.png)
+![Molecular Graph Representation](../images/molecular_graphs_with_QED.png)
 
 *Figure 1.3:Example molecular graphs with quantitative estimate of druglikeness (QED).*
