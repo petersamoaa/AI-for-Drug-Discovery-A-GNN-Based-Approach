@@ -73,7 +73,9 @@ We downloaded the ZINK dataset via cdode above, which generates the following ou
 | CCOC(=O)[C@@H]1CCCN(C(=O)c2nc(-c3ccc(C)cc3)n3c...|  4.00022  |  0.690944  |  2.822753  |
 |N#CC1=C(SCC(=O)Nc2cccc(Cl)c2)N=C([O-])[C@H](C#...| 3.60956 | 0.789027 | 4.035182 |
 
-### Listing 5.17: SMILES to Graph Function (Page 179)
+### SMILES to Graph Function
+We define a function to convert the SMILES into small graphs, which we then use to create a PyG dataset. We also add some additional information to each
+object in our dataset, such as the number of heavy atoms, which we can use for further data exploration. Here, we use the recursive SMILES depth-first search (DFS) toolkit  [(RDKit) package](www.rdkit.org/docs/index.html), which is a great open source tool for cheminformatics.
 ```python
 from torch_geometric.data import Data
 import torch
